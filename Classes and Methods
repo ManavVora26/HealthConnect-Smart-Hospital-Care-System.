@@ -1,14 +1,14 @@
 # 🏥 HealthConnect – Smart AI Government Healthcare Management System
 
-## 📚 Class Design (Object-Oriented Design)
+> ## 📚 Object-Oriented Class Design
 
 ---
 
-# 1. User (Parent Class)
+# 👤 1. User *(Parent Class)*
 
-Represents every user in the system.
+> Represents every user in the system.
 
-## Attributes
+### 📌 Attributes
 
 ```java
 int userId;
@@ -19,7 +19,7 @@ String phone;
 String role;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 login();
@@ -30,9 +30,9 @@ changePassword();
 
 ---
 
-# 2. Patient extends User
+# 🧑‍⚕️ 2. Patient *(extends User)*
 
-## Attributes
+### 📌 Attributes
 
 ```java
 String healthId;
@@ -41,7 +41,7 @@ String allergies;
 String emergencyContact;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 bookAppointment();
@@ -54,9 +54,9 @@ viewDashboard();
 
 ---
 
-# 3. Doctor extends User
+# 👨‍⚕️ 3. Doctor *(extends User)*
 
-## Attributes
+### 📌 Attributes
 
 ```java
 String specialization;
@@ -64,7 +64,7 @@ int experience;
 boolean available;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 viewAppointments();
@@ -77,10 +77,16 @@ viewDashboard();
 
 ---
 
-# 4. Admin extends User
+# 🛡️ 4. Admin *(extends User)*
 
+### 📌 Attributes
 
-## Methods
+```java
+String designation;
+String accessLevel;
+```
+
+### ⚙️ Methods
 
 ```java
 addDoctor();
@@ -94,9 +100,9 @@ viewFeedback();
 
 ---
 
-# 5. Appointment
+# 📅 5. Appointment
 
-## Attributes
+### 📌 Attributes
 
 ```java
 int appointmentId;
@@ -106,7 +112,7 @@ Date appointmentDate;
 String status;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 bookAppointment();
@@ -117,17 +123,17 @@ getDetails();
 
 ---
 
-# 6. QueueManager
+# 🚦 6. QueueManager
 
-Handles Smart Queue Management.
+> Handles Smart Queue Management.
 
-## Attributes
+### 📌 Attributes
 
 ```java
 Queue<Appointment> queue;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 generateToken();
@@ -140,11 +146,11 @@ prioritizeEmergency();
 
 ---
 
-# 7. MedicalRecord
+# 📋 7. MedicalRecord
 
-Stores complete patient medical history.
+> Stores complete patient medical history.
 
-## Attributes
+### 📌 Attributes
 
 ```java
 Patient patient;
@@ -153,7 +159,7 @@ String allergies;
 String history;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 addRecord();
@@ -163,11 +169,11 @@ viewRecord();
 
 ---
 
-# 8. Report
+# 📝 8. Report
 
-Doctor's medical reports.
+> Doctor's medical report.
 
-## Attributes
+### 📌 Attributes
 
 ```java
 int reportId;
@@ -177,7 +183,7 @@ String temperature;
 String bloodPressure;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 generateReport();
@@ -187,9 +193,9 @@ viewReport();
 
 ---
 
-# 9. Prescription
+# 💊 9. Prescription
 
-## Attributes
+### 📌 Attributes
 
 ```java
 String medicine;
@@ -198,7 +204,7 @@ String duration;
 String instructions;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 addMedicine();
@@ -209,9 +215,9 @@ downloadPDF();
 
 ---
 
-# 10. DietPlan
+# 🥗 10. DietPlan
 
-## Attributes
+### 📌 Attributes
 
 ```java
 String disease;
@@ -221,7 +227,7 @@ String dinner;
 String avoidFoods;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 generateDiet();
@@ -231,11 +237,11 @@ updateDiet();
 
 ---
 
-# 11. Discussion
+# 💬 11. Discussion
 
-Doctor–Patient Communication Module.
+> Doctor–Patient Communication
 
-## Attributes
+### 📌 Attributes
 
 ```java
 Appointment appointment;
@@ -243,7 +249,7 @@ String message;
 Date time;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 sendMessage();
@@ -254,11 +260,11 @@ sharePDF();
 
 ---
 
-# 12. Reminder
+# ⏰ 12. Reminder
 
-Medicine & Follow-up Reminder.
+> Medicine & Follow-up Reminder
 
-## Attributes
+### 📌 Attributes
 
 ```java
 Date reminderDate;
@@ -266,7 +272,7 @@ String type;
 String message;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 createReminder();
@@ -276,18 +282,16 @@ markCompleted();
 
 ---
 
-# 13. Hospital
+# 🏥 13. Hospital
 
-Nearby Hospital Search.
-
-## Attributes
+### 📌 Attributes
 
 ```java
 String hospitalName;
 String address;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 searchNearby();
@@ -296,18 +300,16 @@ displayHospital();
 
 ---
 
-# 14. Pharmacy
+# 💊 14. Pharmacy
 
-Nearby Pharmacy Search.
-
-## Attributes
+### 📌 Attributes
 
 ```java
 String pharmacyName;
 String address;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 searchNearby();
@@ -316,11 +318,9 @@ displayPharmacy();
 
 ---
 
-# 15. DoctorFinder
+# 🔍 15. DoctorFinder
 
-Doctor Search Module.
-
-## Methods
+### ⚙️ Methods
 
 ```java
 searchBySpecialization();
@@ -330,11 +330,9 @@ bookDoctor();
 
 ---
 
-# 16. Dashboard
+# 📊 16. Dashboard
 
-Common Dashboard Logic.
-
-## Methods
+### ⚙️ Methods
 
 ```java
 showPatientDashboard();
@@ -343,9 +341,9 @@ showDoctorDashboard();
 
 ---
 
-# 17. HealthIDGenerator
+# 🆔 17. HealthIDGenerator
 
-## Methods
+### ⚙️ Methods
 
 ```java
 generateHealthID();
@@ -354,11 +352,9 @@ verifyHealthID();
 
 ---
 
-# 18. Main
+# 🚀 18. Main
 
-Application Driver Class.
-
-## Methods
+### ⚙️ Methods
 
 ```java
 main();
@@ -367,11 +363,9 @@ showMenu();
 
 ---
 
-# 19. Billing
+# 💳 19. Billing
 
-Handles hospital billing and payments.
-
-## Attributes
+### 📌 Attributes
 
 ```java
 int billId;
@@ -387,7 +381,7 @@ String paymentMethod;
 Date billDate;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 generateBill();
@@ -399,11 +393,9 @@ viewBill();
 
 ---
 
-# 20. Feedback
+# ⭐ 20. Feedback
 
-Patient feedback and ratings.
-
-## Attributes
+### 📌 Attributes
 
 ```java
 int feedbackId;
@@ -415,7 +407,7 @@ String comments;
 Date feedbackDate;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 submitFeedback();
@@ -427,11 +419,11 @@ calculateAverageRating();
 
 ---
 
-# 21. LabTest
+# 🧪 21. LabTest
 
-Laboratory Test Management.
+> Handles laboratory test requests and reports.
 
-## Attributes
+### 📌 Attributes
 
 ```java
 int labTestId;
@@ -446,7 +438,7 @@ Date testDate;
 String remarks;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 bookLabTest();
@@ -458,11 +450,11 @@ updateStatus();
 
 ---
 
-# 22. AuditLog
+# 📜 22. AuditLog
 
-Tracks system activities.
+> Records all important system activities.
 
-## Attributes
+### 📌 Attributes
 
 ```java
 int logId;
@@ -474,7 +466,7 @@ String logTime;
 String description;
 ```
 
-## Methods
+### ⚙️ Methods
 
 ```java
 createLog();
@@ -485,90 +477,88 @@ deleteOldLogs();
 
 ---
 
-# 🧬 Inheritance Structure
+# 🌳 Inheritance Structure
 
 ```text
-                    User
-                  /   |   \
-                 /    |    \
-          Patient  Doctor  Admin
+                   User
+                /    |    \
+               /     |     \
+        Patient   Doctor   Admin
 ```
 
-Only one inheritance hierarchy is required for this project.
+> ✅ Only one inheritance hierarchy is required.
 
 ---
 
-# 📋 Complete Class List
+# 📚 Complete Class List
 
-| No. | Class | Purpose |
-|-----:|--------|---------|
-| 1 | User | Parent Class |
-| 2 | Patient | Child Class |
-| 3 | Doctor | Child Class |
-| 4 | Admin | Child Class |
-| 5 | Appointment | Appointment Booking |
-| 6 | QueueManager | Smart Queue Management |
-| 7 | MedicalRecord | Patient Medical History |
-| 8 | Report | Doctor Report |
-| 9 | Prescription | Medicine Prescription |
-| 10 | DietPlan | Diet Recommendation |
-| 11 | Discussion | Doctor–Patient Chat |
-| 12 | Reminder | Medicine & Follow-up Reminder |
-| 13 | Hospital | Nearby Hospital Search |
-| 14 | Pharmacy | Nearby Pharmacy Search |
-| 15 | DoctorFinder | Doctor Search |
-| 16 | Dashboard | Dashboard Module |
-| 17 | HealthIDGenerator | Health ID Generation |
-| 18 | Billing | Billing & Payments |
-| 19 | Feedback | Ratings & Reviews |
-| 20 | LabTest | Laboratory Tests |
-| 21 | AuditLog | Activity Logging |
-| 22 | Main | Application Entry Point |
+| Class                | Purpose                |
+| -------------------- | ---------------------- |
+| 👤 User              | Parent Class           |
+| 🧑‍⚕️ Patient        | Child Class            |
+| 👨‍⚕️ Doctor         | Child Class            |
+| 🛡️ Admin            | Child Class            |
+| 📅 Appointment       | Appointment Booking    |
+| 🚦 QueueManager      | Smart Queue            |
+| 📋 MedicalRecord     | Patient History        |
+| 📝 Report            | Doctor Report          |
+| 💊 Prescription      | Medicines              |
+| 🥗 DietPlan          | Diet Recommendation    |
+| 💬 Discussion        | Doctor–Patient Chat    |
+| ⏰ Reminder           | Medicine & Follow-up   |
+| 🏥 Hospital          | Nearby Hospital Search |
+| 💊 Pharmacy          | Nearby Pharmacy Search |
+| 🔍 DoctorFinder      | Search Doctor          |
+| 📊 Dashboard         | Dashboard Module       |
+| 🆔 HealthIDGenerator | Health ID Generation   |
+| 💳 Billing           | Billing & Payments     |
+| ⭐ Feedback           | Patient Ratings        |
+| 🧪 LabTest           | Laboratory Tests       |
+| 📜 AuditLog          | System Logs            |
+| 🚀 Main              | Driver Class           |
 
----
-
-# 📊 Total Classes
-
-```text
-Total = 22 Classes
-```
+> **📦 Total Classes = 22**
 
 ---
 
 # 💻 Data Structures Used
 
-| Feature | Data Structure |
-|----------|----------------|
-| Smart Queue | `PriorityQueue<Appointment>` |
-| Doctor–Patient Discussion | `ArrayList<String>` or `ArrayList<Message>` |
-| Medical History | `ArrayList<MedicalRecord>` |
-| Reports | `ArrayList<Report>` |
-| Prescriptions | `ArrayList<Prescription>` |
-| Diet Plans | `ArrayList<DietPlan>` |
-| Reminders | `ArrayList<Reminder>` |
-| Doctor Finder | `ArrayList<Doctor>` with filtering |
+| Feature                      | Data Structure                              |
+| ---------------------------- | ------------------------------------------- |
+| 🚦 Smart Queue               | `PriorityQueue<Appointment>`                |
+| 💬 Doctor–Patient Discussion | `ArrayList<String>` or `ArrayList<Message>` |
+| 📋 Medical History           | `ArrayList<MedicalRecord>`                  |
+| 📝 Reports                   | `ArrayList<Report>`                         |
+| 💊 Prescriptions             | `ArrayList<Prescription>`                   |
+| 🥗 Diet Plans                | `ArrayList<DietPlan>`                       |
+| ⏰ Reminders                  | `ArrayList<Reminder>`                       |
+| 🔍 Doctor Finder             | `ArrayList<Doctor>` with filtering          |
 
 ---
 
-# ✅ Object-Oriented Concepts Used
+# 🎯 OOP Concepts Used
 
-- ✔ Inheritance (`Patient`, `Doctor`, `Admin` → `User`)
-- ✔ Encapsulation (Private attributes with getters/setters)
-- ✔ Abstraction (Separate classes for different modules)
-- ✔ Polymorphism (Method overriding where required)
-- ✔ Composition (Appointment contains Patient & Doctor)
-- ✔ Association (Billing, Feedback, LabTest, Report, etc.)
+* ✅ Inheritance
+* ✅ Encapsulation
+* ✅ Abstraction
+* ✅ Polymorphism
+* ✅ Composition
+* ✅ Association
 
 ---
 
-# 🚀 Project Summary
+# 📌 Project Summary
 
-- **Project Name:** HealthConnect – Smart AI Government Healthcare Management System
-- **Programming Language:** Java
-- **Database:** MySQL
-- **IDE:** IntelliJ IDEA
-- **Total Classes:** **22**
-- **Inheritance Levels:** **1**
-- **Primary Data Structure:** `PriorityQueue`
-- **Additional Collections:** `ArrayList`, `Queue`
-- **Design Pattern:** Object-Oriented Programming (OOP)
+| Property                   | Value                                                            |
+| -------------------------- | ---------------------------------------------------------------- |
+| **Project Name**           | HealthConnect – Smart AI Government Healthcare Management System |
+| **Language**               | Java                                                             |
+| **Database**               | MySQL                                                            |
+| **IDE**                    | IntelliJ IDEA                                                    |
+| **Total Classes**          | **22**                                                           |
+| **Inheritance Levels**     | **1**                                                            |
+| **Primary Data Structure** | `PriorityQueue`                                                  |
+| **Collections Used**       | `ArrayList`, `Queue`, `PriorityQueue`                            |
+| **Programming Paradigm**   | Object-Oriented Programming (OOP)                                |
+
+> 💡 **Tip for Notion:** Turn each class heading into a **Toggle Heading** (`/toggle heading`) so you can collapse and expand each class while studying or presenting your project. This keeps your notes clean and easy to navigate.
