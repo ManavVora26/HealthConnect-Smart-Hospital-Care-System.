@@ -1,0 +1,574 @@
+# 🏥 HealthConnect – Smart AI Government Healthcare Management System
+
+## 📚 Class Design (Object-Oriented Design)
+
+---
+
+# 1. User (Parent Class)
+
+Represents every user in the system.
+
+## Attributes
+
+```java
+int userId;
+String name;
+String email;
+String password;
+String phone;
+String role;
+```
+
+## Methods
+
+```java
+login();
+logout();
+updateProfile();
+changePassword();
+```
+
+---
+
+# 2. Patient extends User
+
+## Attributes
+
+```java
+String healthId;
+String bloodGroup;
+String allergies;
+String emergencyContact;
+```
+
+## Methods
+
+```java
+bookAppointment();
+viewMedicalHistory();
+viewPrescription();
+viewDietPlan();
+viewReports();
+viewDashboard();
+```
+
+---
+
+# 3. Doctor extends User
+
+## Attributes
+
+```java
+String specialization;
+int experience;
+boolean available;
+```
+
+## Methods
+
+```java
+viewAppointments();
+createReport();
+createPrescription();
+createDietPlan();
+replyPatient();
+viewDashboard();
+```
+
+---
+
+# 4. Admin extends User
+
+
+## Methods
+
+```java
+addDoctor();
+removeDoctor();
+manageUsers();
+manageAppointments();
+viewSystemReports();
+manageBilling();
+viewFeedback();
+```
+
+---
+
+# 5. Appointment
+
+## Attributes
+
+```java
+int appointmentId;
+Patient patient;
+Doctor doctor;
+Date appointmentDate;
+String status;
+```
+
+## Methods
+
+```java
+bookAppointment();
+cancelAppointment();
+updateStatus();
+getDetails();
+```
+
+---
+
+# 6. QueueManager
+
+Handles Smart Queue Management.
+
+## Attributes
+
+```java
+Queue<Appointment> queue;
+```
+
+## Methods
+
+```java
+generateToken();
+addPatient();
+removePatient();
+displayQueue();
+calculateWaitingTime();
+prioritizeEmergency();
+```
+
+---
+
+# 7. MedicalRecord
+
+Stores complete patient medical history.
+
+## Attributes
+
+```java
+Patient patient;
+String diagnosis;
+String allergies;
+String history;
+```
+
+## Methods
+
+```java
+addRecord();
+updateRecord();
+viewRecord();
+```
+
+---
+
+# 8. Report
+
+Doctor's medical reports.
+
+## Attributes
+
+```java
+int reportId;
+String diagnosis;
+String notes;
+String temperature;
+String bloodPressure;
+```
+
+## Methods
+
+```java
+generateReport();
+downloadPDF();
+viewReport();
+```
+
+---
+
+# 9. Prescription
+
+## Attributes
+
+```java
+String medicine;
+String dosage;
+String duration;
+String instructions;
+```
+
+## Methods
+
+```java
+addMedicine();
+updateMedicine();
+viewPrescription();
+downloadPDF();
+```
+
+---
+
+# 10. DietPlan
+
+## Attributes
+
+```java
+String disease;
+String breakfast;
+String lunch;
+String dinner;
+String avoidFoods;
+```
+
+## Methods
+
+```java
+generateDiet();
+viewDiet();
+updateDiet();
+```
+
+---
+
+# 11. Discussion
+
+Doctor–Patient Communication Module.
+
+## Attributes
+
+```java
+Appointment appointment;
+String message;
+Date time;
+```
+
+## Methods
+
+```java
+sendMessage();
+viewConversation();
+uploadReport();
+sharePDF();
+```
+
+---
+
+# 12. Reminder
+
+Medicine & Follow-up Reminder.
+
+## Attributes
+
+```java
+Date reminderDate;
+String type;
+String message;
+```
+
+## Methods
+
+```java
+createReminder();
+sendReminder();
+markCompleted();
+```
+
+---
+
+# 13. Hospital
+
+Nearby Hospital Search.
+
+## Attributes
+
+```java
+String hospitalName;
+String address;
+```
+
+## Methods
+
+```java
+searchNearby();
+displayHospital();
+```
+
+---
+
+# 14. Pharmacy
+
+Nearby Pharmacy Search.
+
+## Attributes
+
+```java
+String pharmacyName;
+String address;
+```
+
+## Methods
+
+```java
+searchNearby();
+displayPharmacy();
+```
+
+---
+
+# 15. DoctorFinder
+
+Doctor Search Module.
+
+## Methods
+
+```java
+searchBySpecialization();
+searchAvailableDoctors();
+bookDoctor();
+```
+
+---
+
+# 16. Dashboard
+
+Common Dashboard Logic.
+
+## Methods
+
+```java
+showPatientDashboard();
+showDoctorDashboard();
+```
+
+---
+
+# 17. HealthIDGenerator
+
+## Methods
+
+```java
+generateHealthID();
+verifyHealthID();
+```
+
+---
+
+# 18. Main
+
+Application Driver Class.
+
+## Methods
+
+```java
+main();
+showMenu();
+```
+
+---
+
+# 19. Billing
+
+Handles hospital billing and payments.
+
+## Attributes
+
+```java
+int billId;
+Patient patient;
+Appointment appointment;
+double consultationFee;
+double labCharges;
+double medicineCharges;
+double otherCharges;
+double totalAmount;
+String paymentStatus;
+String paymentMethod;
+Date billDate;
+```
+
+## Methods
+
+```java
+generateBill();
+calculateTotal();
+makePayment();
+downloadBill();
+viewBill();
+```
+
+---
+
+# 20. Feedback
+
+Patient feedback and ratings.
+
+## Attributes
+
+```java
+int feedbackId;
+Patient patient;
+Doctor doctor;
+Appointment appointment;
+int rating;
+String comments;
+Date feedbackDate;
+```
+
+## Methods
+
+```java
+submitFeedback();
+updateFeedback();
+viewFeedback();
+deleteFeedback();
+calculateAverageRating();
+```
+
+---
+
+# 21. LabTest
+
+Laboratory Test Management.
+
+## Attributes
+
+```java
+int labTestId;
+Patient patient;
+Doctor doctor;
+Appointment appointment;
+String testName;
+String testResult;
+String normalRange;
+String status;
+Date testDate;
+String remarks;
+```
+
+## Methods
+
+```java
+bookLabTest();
+updateResult();
+viewResult();
+downloadReport();
+updateStatus();
+```
+
+---
+
+# 22. AuditLog
+
+Tracks system activities.
+
+## Attributes
+
+```java
+int logId;
+User user;
+String action;
+String module;
+Date logDate;
+String logTime;
+String description;
+```
+
+## Methods
+
+```java
+createLog();
+viewLogs();
+searchLogs();
+deleteOldLogs();
+```
+
+---
+
+# 🧬 Inheritance Structure
+
+```text
+                    User
+                  /   |   \
+                 /    |    \
+          Patient  Doctor  Admin
+```
+
+Only one inheritance hierarchy is required for this project.
+
+---
+
+# 📋 Complete Class List
+
+| No. | Class | Purpose |
+|-----:|--------|---------|
+| 1 | User | Parent Class |
+| 2 | Patient | Child Class |
+| 3 | Doctor | Child Class |
+| 4 | Admin | Child Class |
+| 5 | Appointment | Appointment Booking |
+| 6 | QueueManager | Smart Queue Management |
+| 7 | MedicalRecord | Patient Medical History |
+| 8 | Report | Doctor Report |
+| 9 | Prescription | Medicine Prescription |
+| 10 | DietPlan | Diet Recommendation |
+| 11 | Discussion | Doctor–Patient Chat |
+| 12 | Reminder | Medicine & Follow-up Reminder |
+| 13 | Hospital | Nearby Hospital Search |
+| 14 | Pharmacy | Nearby Pharmacy Search |
+| 15 | DoctorFinder | Doctor Search |
+| 16 | Dashboard | Dashboard Module |
+| 17 | HealthIDGenerator | Health ID Generation |
+| 18 | Billing | Billing & Payments |
+| 19 | Feedback | Ratings & Reviews |
+| 20 | LabTest | Laboratory Tests |
+| 21 | AuditLog | Activity Logging |
+| 22 | Main | Application Entry Point |
+
+---
+
+# 📊 Total Classes
+
+```text
+Total = 22 Classes
+```
+
+---
+
+# 💻 Data Structures Used
+
+| Feature | Data Structure |
+|----------|----------------|
+| Smart Queue | `PriorityQueue<Appointment>` |
+| Doctor–Patient Discussion | `ArrayList<String>` or `ArrayList<Message>` |
+| Medical History | `ArrayList<MedicalRecord>` |
+| Reports | `ArrayList<Report>` |
+| Prescriptions | `ArrayList<Prescription>` |
+| Diet Plans | `ArrayList<DietPlan>` |
+| Reminders | `ArrayList<Reminder>` |
+| Doctor Finder | `ArrayList<Doctor>` with filtering |
+
+---
+
+# ✅ Object-Oriented Concepts Used
+
+- ✔ Inheritance (`Patient`, `Doctor`, `Admin` → `User`)
+- ✔ Encapsulation (Private attributes with getters/setters)
+- ✔ Abstraction (Separate classes for different modules)
+- ✔ Polymorphism (Method overriding where required)
+- ✔ Composition (Appointment contains Patient & Doctor)
+- ✔ Association (Billing, Feedback, LabTest, Report, etc.)
+
+---
+
+# 🚀 Project Summary
+
+- **Project Name:** HealthConnect – Smart AI Government Healthcare Management System
+- **Programming Language:** Java
+- **Database:** MySQL
+- **IDE:** IntelliJ IDEA
+- **Total Classes:** **22**
+- **Inheritance Levels:** **1**
+- **Primary Data Structure:** `PriorityQueue`
+- **Additional Collections:** `ArrayList`, `Queue`
+- **Design Pattern:** Object-Oriented Programming (OOP)
