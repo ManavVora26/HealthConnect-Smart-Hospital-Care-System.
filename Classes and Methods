@@ -91,6 +91,8 @@ String accessLevel;
 ```java
 addDoctor();
 removeDoctor();
+addPatient();
+removePatient();
 manageUsers();
 manageAppointments();
 viewSystemReports();
