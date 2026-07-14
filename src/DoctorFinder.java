@@ -1,5 +1,10 @@
 public class DoctorFinder {
-    static void main() {
+    public void searchBySpecialization() {
+    }
 
+    public void searchAvailableDoctors() {
+    }
+
+    public void bookDoctor() {
     }
 }

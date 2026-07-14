@@ -1,5 +1,7 @@
 public class Dashboard {
-    static void main() {
+    public void showPatientDashboard() {
+    }
 
+    public void showDoctorDashboard() {
     }
 }

@@ -1,5 +1,16 @@
-public class Reminder {
-    static void main() {
+import java.util.Date;
 
+public class Reminder {
+    Date reminderDate = new Date();
+    String type = "";
+    String message = "";
+
+    public void createReminder() {
+    }
+
+    public void sendReminder() {
+    }
+
+    public void markCompleted() {
     }
 }

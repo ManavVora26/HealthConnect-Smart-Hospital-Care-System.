@@ -1,5 +1,7 @@
 public class HealthIDGenerator {
-    static void main() {
+    public void generateHealthID() {
+    }
 
+    public void verifyHealthID() {
     }
 }

@@ -1,5 +1,7 @@
 public class Pharmacy {
-    static void main() {
+    String pharmacyName = "";
+    String address = "";
 
+    public void displayPharmacy() {
     }
 }

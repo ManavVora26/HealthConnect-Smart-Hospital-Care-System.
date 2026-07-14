@@ -1,5 +1,7 @@
 public class Hospital {
-    static void main() {
+    String hospitalName = "";
+    String address = "";
 
+    public void displayHospital() {
     }
 }
