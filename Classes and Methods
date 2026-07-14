@@ -294,7 +294,6 @@ String address;
 ### ⚙️ Methods
 
 ```java
-searchNearby();
 displayHospital();
 ```
 
@@ -312,7 +311,6 @@ String address;
 ### ⚙️ Methods
 
 ```java
-searchNearby();
 displayPharmacy();
 ```
 
