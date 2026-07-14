@@ -1,0 +1,385 @@
+# 🏥 HealthConnect – MySQL Routines (Notion Notes)
+
+---
+
+# 📚 MySQL Stored Procedures (50)
+
+Stored Procedures are reusable SQL programs that perform operations such as **Insert, Update, Delete, Search, Authentication, and Business Logic**.
+
+---
+
+# 👤 User Module
+
+| Procedure             | Purpose                                          |
+| --------------------- | ------------------------------------------------ |
+| **LoginUser**         | Authenticate user using email and password       |
+| **UpdateUserProfile** | Update user details (name, phone, address, etc.) |
+| **ChangePassword**    | Change user's password                           |
+| **GetUserById**       | Retrieve user information by User ID             |
+
+---
+
+# 🧑‍⚕️ Patient Module
+
+| Procedure              | Purpose                           |
+| ---------------------- | --------------------------------- |
+| **RegisterPatient**    | Register a new patient            |
+| **BookAppointment**    | Book an appointment with a doctor |
+| **ViewMedicalHistory** | Retrieve complete medical history |
+| **ViewPrescriptions**  | Retrieve all prescriptions        |
+| **ViewDietPlans**      | Retrieve assigned diet plans      |
+
+---
+
+# 👨‍⚕️ Doctor Module
+
+| Procedure                    | Purpose                            |
+| ---------------------------- | ---------------------------------- |
+| **AddDoctor**                | Add a new doctor                   |
+| **UpdateDoctorAvailability** | Update doctor's available schedule |
+| **GetDoctorAppointments**    | Retrieve doctor's appointments     |
+| **CreateMedicalReport**      | Add a medical report               |
+| **CreatePrescription**       | Create a prescription              |
+
+---
+
+# 📅 Appointment Module
+
+| Procedure                   | Purpose                                   |
+| --------------------------- | ----------------------------------------- |
+| **CancelAppointment**       | Cancel an appointment                     |
+| **UpdateAppointmentStatus** | Update appointment status                 |
+| **GetAppointmentDetails**   | Retrieve appointment details              |
+| **RescheduleAppointment**   | Change appointment date/time              |
+| **GetAppointmentsByDate**   | Retrieve appointments for a selected date |
+
+---
+
+# 🚦 Queue Management Module
+
+| Procedure                  | Purpose                             |
+| -------------------------- | ----------------------------------- |
+| **AddPatientToQueue**      | Add patient to queue                |
+| **RemovePatientFromQueue** | Remove patient from queue           |
+| **PrioritizeEmergency**    | Give priority to emergency patients |
+| **ViewQueue**              | Display current queue               |
+
+---
+
+# 📋 Medical Record Module
+
+| Procedure               | Purpose                 |
+| ----------------------- | ----------------------- |
+| **AddMedicalRecord**    | Insert medical record   |
+| **UpdateMedicalRecord** | Modify medical record   |
+| **ViewMedicalRecord**   | Retrieve medical record |
+
+---
+
+# 📝 Medical Report Module
+
+| Procedure               | Purpose         |
+| ----------------------- | --------------- |
+| **UpdateMedicalReport** | Update report   |
+| **ViewMedicalReport**   | Retrieve report |
+
+---
+
+# 💊 Prescription Module
+
+| Procedure              | Purpose               |
+| ---------------------- | --------------------- |
+| **UpdatePrescription** | Modify prescription   |
+| **DeletePrescription** | Delete prescription   |
+| **ViewPrescription**   | Retrieve prescription |
+
+---
+
+# 🥗 Diet Plan Module
+
+| Procedure          | Purpose            |
+| ------------------ | ------------------ |
+| **CreateDietPlan** | Create diet plan   |
+| **UpdateDietPlan** | Modify diet plan   |
+| **ViewDietPlan**   | Retrieve diet plan |
+
+---
+
+# 💬 Discussion Module
+
+| Procedure            | Purpose                                 |
+| -------------------- | --------------------------------------- |
+| **SendMessage**      | Send message between doctor and patient |
+| **ViewConversation** | Retrieve conversation history           |
+
+---
+
+# ⏰ Reminder Module
+
+| Procedure            | Purpose                            |
+| -------------------- | ---------------------------------- |
+| **CreateReminder**   | Create medicine/follow-up reminder |
+| **CompleteReminder** | Mark reminder as completed         |
+
+---
+
+# 💳 Billing Module
+
+| Procedure        | Purpose               |
+| ---------------- | --------------------- |
+| **GenerateBill** | Generate patient bill |
+| **MakePayment**  | Record payment        |
+
+---
+
+# ⭐ Feedback Module
+
+| Procedure          | Purpose           |
+| ------------------ | ----------------- |
+| **SubmitFeedback** | Submit feedback   |
+| **UpdateFeedback** | Edit feedback     |
+| **DeleteFeedback** | Delete feedback   |
+| **ViewFeedback**   | Retrieve feedback |
+
+---
+
+# 🧪 Lab Test Module
+
+| Procedure           | Purpose                  |
+| ------------------- | ------------------------ |
+| **BookLabTest**     | Schedule laboratory test |
+| **UpdateLabResult** | Save test result         |
+| **ViewLabResult**   | Retrieve lab result      |
+| **UpdateLabStatus** | Change lab test status   |
+
+---
+
+# 📜 Audit Log Module
+
+| Procedure         | Purpose                |
+| ----------------- | ---------------------- |
+| **ViewAuditLogs** | View system audit logs |
+| **DeleteOldLogs** | Remove old audit logs  |
+
+---
+
+# ✅ Total Stored Procedures = **50**
+
+---
+
+# 📚 MySQL Stored Functions (5)
+
+Stored Functions return a **single value** and can be used inside SQL queries.
+
+| Function                   | Returns | Purpose                                       |
+| -------------------------- | ------- | --------------------------------------------- |
+| **GenerateHealthID()**     | VARCHAR | Generates a unique Health ID for each patient |
+| **GenerateQueueToken()**   | INT     | Generates the next queue token number         |
+| **CalculateBillTotal()**   | DECIMAL | Calculates total bill amount                  |
+| **AverageDoctorRating()**  | DECIMAL | Returns average doctor rating                 |
+| **CalculateWaitingTime()** | INT     | Estimates patient waiting time                |
+
+---
+
+# 📚 MySQL Triggers (15)
+
+Triggers execute **automatically** when an INSERT, UPDATE, or DELETE event occurs.
+
+---
+
+# 👤 User Triggers
+
+### 1. `trg_generate_health_id`
+
+**Event:** AFTER INSERT ON `patients`
+
+**Purpose:**
+
+* Automatically generate a unique Health ID after patient registration.
+
+---
+
+### 2. `trg_profile_updated`
+
+**Event:** AFTER UPDATE ON `users`
+
+**Purpose:**
+
+* Store profile update activity in the Audit Log.
+
+---
+
+# 📅 Appointment Triggers
+
+### 3. `trg_appointment_booked`
+
+**Event:** AFTER INSERT ON `appointments`
+
+**Purpose:**
+
+* Record appointment booking in Audit Log.
+
+---
+
+### 4. `trg_appointment_cancelled`
+
+**Event:** AFTER UPDATE ON `appointments`
+
+**Condition:**
+
+* Status becomes **Cancelled**
+
+**Purpose:**
+
+* Record appointment cancellation in Audit Log.
+
+---
+
+# 📝 Medical Report Trigger
+
+### 5. `trg_report_completed`
+
+**Event:** AFTER INSERT ON `reports`
+
+**Purpose:**
+
+* Automatically mark appointment as **Completed** after report creation.
+
+---
+
+# 💳 Billing Triggers
+
+### 6. `trg_bill_before_insert`
+
+**Event:** BEFORE INSERT ON `billing`
+
+**Purpose:**
+
+* Automatically calculate bill total before saving.
+
+---
+
+### 7. `trg_bill_before_update`
+
+**Event:** BEFORE UPDATE ON `billing`
+
+**Purpose:**
+
+* Recalculate bill amount whenever billing information changes.
+
+---
+
+# 💰 Payment Trigger
+
+### 8. `trg_payment_success`
+
+**Event:** AFTER UPDATE ON `billing`
+
+**Condition:**
+
+* Payment Status = **Paid**
+
+**Purpose:**
+
+* Store successful payment activity in Audit Log.
+
+---
+
+# ⭐ Feedback Trigger
+
+### 9. `trg_feedback_insert`
+
+**Event:** AFTER INSERT ON `feedback`
+
+**Purpose:**
+
+* Refresh doctor's average rating after receiving new feedback.
+
+---
+
+# 💊 Prescription Trigger
+
+### 10. `trg_prescription_insert`
+
+**Event:** AFTER INSERT ON `prescriptions`
+
+**Purpose:**
+
+* Automatically create medicine reminders for the patient.
+
+---
+
+# 🥗 Diet Plan Trigger
+
+### 11. `trg_diet_insert`
+
+**Event:** AFTER INSERT ON `diet_plans`
+
+**Purpose:**
+
+* Record diet plan creation in Audit Log.
+
+---
+
+# 🧪 Lab Test Trigger
+
+### 12. `trg_lab_completed`
+
+**Event:** AFTER UPDATE ON `lab_tests`
+
+**Condition:**
+
+* Status becomes **Completed**
+
+**Purpose:**
+
+* Automatically update patient's medical record with the lab result.
+
+---
+
+# 📋 Medical Record Trigger
+
+### 13. `trg_record_updated`
+
+**Event:** AFTER UPDATE ON `medical_records`
+
+**Purpose:**
+
+* Record medical record modifications in Audit Log.
+
+---
+
+# ⏰ Reminder Trigger
+
+### 14. `trg_reminder_created`
+
+**Event:** AFTER INSERT ON `reminders`
+
+**Purpose:**
+
+* Store reminder creation activity in Audit Log.
+
+---
+
+# 💬 Discussion Trigger
+
+### 15. `trg_message_sent`
+
+**Event:** AFTER INSERT ON `discussions`
+
+**Purpose:**
+
+* Record doctor-patient message activity in Audit Log.
+
+---
+
+# 📌 Summary
+
+| Type                     |  Count |
+| ------------------------ | -----: |
+| Stored Procedures        | **50** |
+| Stored Functions         |  **5** |
+| Triggers                 | **15** |
+| **Total MySQL Routines** | **70** |
+
+> These routines cover the complete functionality of the **HealthConnect – Smart AI Government Healthcare Management System** and are suitable for a semester project, with procedures mapping to CRUD operations, functions handling reusable calculations and ID generation, and triggers automating logging, billing, reminders, and status updates.
