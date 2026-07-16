@@ -1,115 +1,201 @@
-
-import java.sql.Connection;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
-import java.util.Date;
 import java.util.Scanner;
 
-// Class to manage communication between patient and doctor
 public class Discussion {
-
     Appointment appointment = new Appointment();
     String message = "";
-    Date time = new Date();
+    String time = "";
 
-    // Method to send a message
-    public void sendMessage() {
+    public void sendMessage() throws Exception {
         Scanner sc = new Scanner(System.in);
         System.out.println("\n💬 --- Send Message ---");
-        System.out.print("👉 Enter Patient ID: ");
-        int patientId = Integer.parseInt(sc.nextLine());
-        System.out.print("👉 Enter Doctor ID: ");
-        int doctorId = Integer.parseInt(sc.nextLine());
+
+        int patientId = 0;
+        while (true) {
+            System.out.print("👉 Enter Patient ID: ");
+            try {
+                patientId = Integer.parseInt(sc.nextLine().trim());
+                if (patientId > 0) {
+                    break;
+                }
+                System.out.println("⚠️ Error: Patient ID must be a positive integer.");
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
+            }
+        }
+
+        int doctorId = 0;
+        while (true) {
+            System.out.print("👉 Enter Doctor ID: ");
+            try {
+                doctorId = Integer.parseInt(sc.nextLine().trim());
+                if (doctorId > 0) {
+                    break;
+                }
+                System.out.println("⚠️ Error: Doctor ID must be a positive integer.");
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
+            }
+        }
+
         System.out.print("💬 Enter Message Content: ");
         String msg = sc.nextLine();
 
-        DBConnection db = new DBConnection();
-        try (Connection conn = db.getConnection();
-             CallableStatement stmt = conn.prepareCall("{call SendMessage(?, ?, ?)}")) {
-            stmt.setInt(1, patientId);
-            stmt.setInt(2, doctorId);
-            stmt.setString(3, msg);
-            stmt.execute();
-            System.out.println("🎉 Message sent successfully!");
-        } catch (Exception e) {
-            System.out.println("❌ Error sending message: " + e.getMessage());
+        if (DBConnection.conn == null || DBConnection.conn.isClosed()) {
+            DBConnection.initialize();
         }
+        CallableStatement stmt = DBConnection.conn.prepareCall("{call SendMessage(?, ?, ?)}");
+        stmt.setInt(1, patientId);
+        stmt.setInt(2, doctorId);
+        stmt.setString(3, msg);
+        stmt.execute();
+        stmt.close();
+        System.out.println("🎉 Message sent successfully!");
     }
 
-    // Method to view conversation history
-    public void viewConversation() {
+    public void viewConversation() throws Exception {
         Scanner sc = new Scanner(System.in);
-        System.out.print("👉 Enter Patient ID: ");
-        int patientId = Integer.parseInt(sc.nextLine());
-        System.out.print("👉 Enter Doctor ID: ");
-        int doctorId = Integer.parseInt(sc.nextLine());
 
-        DBConnection db = new DBConnection();
-        try (Connection conn = db.getConnection();
-             CallableStatement stmt = conn.prepareCall("{call ViewConversation(?, ?)}")) {
-            stmt.setInt(1, patientId);
-            stmt.setInt(2, doctorId);
-            try (ResultSet rs = stmt.executeQuery()) {
-                System.out.println("\n💬 --- Chat History ---");
-                boolean found = false;
-                while (rs.next()) {
-                    found = true;
-                    System.out.println("💬 Message: " + rs.getString("remarks"));
+        int patientId = 0;
+        while (true) {
+            System.out.print("👉 Enter Patient ID: ");
+            try {
+                patientId = Integer.parseInt(sc.nextLine().trim());
+                if (patientId > 0) {
+                    break;
                 }
-                if (!found) {
-                    System.out.println("📭 No conversation history found.");
-                }
+                System.out.println("⚠️ Error: Patient ID must be a positive integer.");
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
             }
-        } catch (Exception e) {
-            System.out.println("❌ Error viewing conversation: " + e.getMessage());
         }
+
+        int doctorId = 0;
+        while (true) {
+            System.out.print("👉 Enter Doctor ID: ");
+            try {
+                doctorId = Integer.parseInt(sc.nextLine().trim());
+                if (doctorId > 0) {
+                    break;
+                }
+                System.out.println("⚠️ Error: Doctor ID must be a positive integer.");
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
+            }
+        }
+
+        if (DBConnection.conn == null || DBConnection.conn.isClosed()) {
+            DBConnection.initialize();
+        }
+        CallableStatement stmt = DBConnection.conn.prepareCall("{call ViewConversation(?, ?)}");
+        stmt.setInt(1, patientId);
+        stmt.setInt(2, doctorId);
+        ResultSet rs = stmt.executeQuery();
+        System.out.println("\n💬 --- Chat History ---");
+        boolean found = false;
+        while (rs.next()) {
+            found = true;
+            System.out.println("💬 Message: " + rs.getString("remarks"));
+        }
+        if (!found) {
+            System.out.println("📭 No conversation history found.");
+        }
+        rs.close();
+        stmt.close();
     }
 
-    // Method to upload and share a report
-    public void uploadReport() {
+    public void uploadReport() throws Exception {
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n⚙️ --- Upload Report File to Discussion ---");
-        System.out.print("👉 Enter Patient ID: ");
-        int patientId = Integer.parseInt(sc.nextLine());
-        System.out.print("👉 Enter Doctor ID: ");
-        int doctorId = Integer.parseInt(sc.nextLine());
+        System.out.println("\n📎 --- Upload Report File to Discussion ---");
+
+        int patientId = 0;
+        while (true) {
+            System.out.print("👉 Enter Patient ID: ");
+            try {
+                patientId = Integer.parseInt(sc.nextLine().trim());
+                if (patientId > 0) {
+                    break;
+                }
+                System.out.println("⚠️ Error: Patient ID must be a positive integer.");
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
+            }
+        }
+
+        int doctorId = 0;
+        while (true) {
+            System.out.print("👉 Enter Doctor ID: ");
+            try {
+                doctorId = Integer.parseInt(sc.nextLine().trim());
+                if (doctorId > 0) {
+                    break;
+                }
+                System.out.println("⚠️ Error: Doctor ID must be a positive integer.");
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
+            }
+        }
+
         System.out.print("📁 Enter Report File Path (e.g. report.pdf): ");
         String filePath = sc.nextLine();
 
-        DBConnection db = new DBConnection();
-        try (Connection conn = db.getConnection();
-             CallableStatement stmt = conn.prepareCall("{call SendMessage(?, ?, ?)}")) {
-            stmt.setInt(1, patientId);
-            stmt.setInt(2, doctorId);
-            stmt.setString(3, "📎 Attached Report File: " + filePath);
-            stmt.execute();
-            System.out.println("✅ File uploaded and shared in conversation successfully!");
-        } catch (Exception e) {
-            System.out.println("❌ Error sharing uploaded report: " + e.getMessage());
+        if (DBConnection.conn == null || DBConnection.conn.isClosed()) {
+            DBConnection.initialize();
         }
+        CallableStatement stmt = DBConnection.conn.prepareCall("{call SendMessage(?, ?, ?)}");
+        stmt.setInt(1, patientId);
+        stmt.setInt(2, doctorId);
+        stmt.setString(3, "📎 Attached Report File: " + filePath);
+        stmt.execute();
+        stmt.close();
+        System.out.println("✅ File uploaded and shared in conversation successfully!");
     }
 
-    // Method to share a PDF document
-    public void sharePDF() {
+    public void sharePDF() throws Exception {
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n⚙️ --- Share PDF Document ---");
-        System.out.print("👉 Enter Patient ID: ");
-        int patientId = Integer.parseInt(sc.nextLine());
-        System.out.print("👉 Enter Doctor ID: ");
-        int doctorId = Integer.parseInt(sc.nextLine());
+        System.out.println("\n📄 --- Share PDF Document ---");
+
+        int patientId = 0;
+        while (true) {
+            System.out.print("👉 Enter Patient ID: ");
+            try {
+                patientId = Integer.parseInt(sc.nextLine().trim());
+                if (patientId > 0) {
+                    break;
+                }
+                System.out.println("⚠️ Error: Patient ID must be a positive integer.");
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
+            }
+        }
+
+        int doctorId = 0;
+        while (true) {
+            System.out.print("👉 Enter Doctor ID: ");
+            try {
+                doctorId = Integer.parseInt(sc.nextLine().trim());
+                if (doctorId > 0) {
+                    break;
+                }
+                System.out.println("⚠️ Error: Doctor ID must be a positive integer.");
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
+            }
+        }
+
         System.out.print("📄 Enter PDF File Path (e.g. invoice.pdf): ");
         String pdfPath = sc.nextLine();
 
-        DBConnection db = new DBConnection();
-        try (Connection conn = db.getConnection();
-             CallableStatement stmt = conn.prepareCall("{call SendMessage(?, ?, ?)}")) {
-            stmt.setInt(1, patientId);
-            stmt.setInt(2, doctorId);
-            stmt.setString(3, "📄 Shared PDF Document: " + pdfPath);
-            stmt.execute();
-            System.out.println("✅ PDF document shared in conversation successfully!");
-        } catch (Exception e) {
-            System.out.println("❌ Error sharing PDF: " + e.getMessage());
+        if (DBConnection.conn == null || DBConnection.conn.isClosed()) {
+            DBConnection.initialize();
         }
+        CallableStatement stmt = DBConnection.conn.prepareCall("{call SendMessage(?, ?, ?)}");
+        stmt.setInt(1, patientId);
+        stmt.setInt(2, doctorId);
+        stmt.setString(3, "📄 Shared PDF Document: " + pdfPath);
+        stmt.execute();
+        stmt.close();
+        System.out.println("✅ PDF document shared in conversation successfully!");
     }
 }
