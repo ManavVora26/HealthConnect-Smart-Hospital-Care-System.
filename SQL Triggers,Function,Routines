@@ -120,8 +120,8 @@ CREATE PROCEDURE ViewDietPlan(IN p_patient_id INT)
     SELECT * FROM diet_plan WHERE patient_id = p_patient_id;
 
 -- Discussion (2)
-CREATE PROCEDURE SendMessage(IN p_pid INT, IN p_did INT, IN p_msg VARCHAR(255))
-    INSERT INTO follow_up (patient_id, doctor_id, remarks) VALUES (p_pid, p_did, p_msg);
+CREATE PROCEDURE SendMessage(IN p_pid INT, IN p_did INT, IN p_msg VARCHAR(255), IN p_next_visit DATE)
+    INSERT INTO follow_up (patient_id, doctor_id, remarks, next_visit) VALUES (p_pid, p_did, p_msg, p_next_visit);
 
 CREATE PROCEDURE ViewConversation(IN p_pid INT, IN p_did INT)
     SELECT * FROM follow_up WHERE patient_id = p_pid AND doctor_id = p_did;
