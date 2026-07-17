@@ -56,16 +56,20 @@ public class Report {
         Scanner sc = new Scanner(System.in);
 
         int patientId = 0;
-        while (true) {
-            System.out.print("👉 Enter Patient ID to view reports: ");
-            try {
-                patientId = Integer.parseInt(sc.nextLine().trim());
-                if (patientId > 0) {
-                    break;
+        if (Main.loggedInUser instanceof Patient) {
+            patientId = ((Patient) Main.loggedInUser).getPatientId();
+        } else {
+            while (true) {
+                System.out.print("👉 Enter Patient ID to view reports: ");
+                try {
+                    patientId = Integer.parseInt(sc.nextLine().trim());
+                    if (patientId > 0) {
+                        break;
+                    }
+                    System.out.println("⚠️ Error: Patient ID must be a positive integer.");
+                } catch (NumberFormatException e) {
+                    System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
                 }
-                System.out.println("⚠️ Error: Patient ID must be a positive integer.");
-            } catch (NumberFormatException e) {
-                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
             }
         }
 

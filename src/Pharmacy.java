@@ -16,7 +16,7 @@ public class Pharmacy {
         if (DBConnection.conn == null || DBConnection.conn.isClosed()) {
             DBConnection.initialize();
         }
-        PreparedStatement ps = DBConnection.conn.prepareStatement("SELECT * FROM pharmacy ORDER BY medicine_name LIMIT 20");
+        PreparedStatement ps = DBConnection.conn.prepareStatement("SELECT * FROM pharmacy ORDER BY medicine_name");
         ResultSet rs = ps.executeQuery();
         boolean found = false;
         while (rs.next()) {

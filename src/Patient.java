@@ -55,6 +55,10 @@ public class Patient extends User {
         return patientId;
     }
 
+    public int getPatientId() throws Exception {
+        return getPatientIdByUserId(this.userId);
+    }
+
     public void bookAppointment() throws Exception {
         Scanner sc = new Scanner(System.in);
         System.out.println("\n📅 --- Book Appointment ---");

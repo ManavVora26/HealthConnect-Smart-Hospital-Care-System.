@@ -13,16 +13,20 @@ public class MedicalRecord {
         System.out.println("\n📋 --- Add Medical Record ---");
 
         int patientId = 0;
-        while (true) {
-            System.out.print("👉 Enter Patient ID: ");
-            try {
-                patientId = Integer.parseInt(sc.nextLine().trim());
-                if (patientId > 0) {
-                    break;
+        if (Main.loggedInUser instanceof Patient) {
+            patientId = ((Patient) Main.loggedInUser).getPatientId();
+        } else {
+            while (true) {
+                System.out.print("👉 Enter Patient ID: ");
+                try {
+                    patientId = Integer.parseInt(sc.nextLine().trim());
+                    if (patientId > 0) {
+                        break;
+                    }
+                    System.out.println("⚠️ Error: Patient ID must be a positive integer.");
+                } catch (NumberFormatException e) {
+                    System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
                 }
-                System.out.println("⚠️ Error: Patient ID must be a positive integer.");
-            } catch (NumberFormatException e) {
-                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
             }
         }
 
@@ -80,16 +84,20 @@ public class MedicalRecord {
         Scanner sc = new Scanner(System.in);
 
         int patientId = 0;
-        while (true) {
-            System.out.print("👉 Enter Patient ID to view records: ");
-            try {
-                patientId = Integer.parseInt(sc.nextLine().trim());
-                if (patientId > 0) {
-                    break;
+        if (Main.loggedInUser instanceof Patient) {
+            patientId = ((Patient) Main.loggedInUser).getPatientId();
+        } else {
+            while (true) {
+                System.out.print("👉 Enter Patient ID to view records: ");
+                try {
+                    patientId = Integer.parseInt(sc.nextLine().trim());
+                    if (patientId > 0) {
+                        break;
+                    }
+                    System.out.println("⚠️ Error: Patient ID must be a positive integer.");
+                } catch (NumberFormatException e) {
+                    System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
                 }
-                System.out.println("⚠️ Error: Patient ID must be a positive integer.");
-            } catch (NumberFormatException e) {
-                System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
             }
         }
 

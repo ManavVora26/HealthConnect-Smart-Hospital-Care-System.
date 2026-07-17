@@ -58,7 +58,19 @@ public class Admin extends User {
 
         int deptId = 0;
         while (true) {
-            System.out.print("👉 Enter Department ID (1-15): ");
+            System.out.println("\n🏥 --- Choose Department ---");
+            if (DBConnection.conn == null || DBConnection.conn.isClosed()) {
+                DBConnection.initialize();
+            }
+            PreparedStatement psDept = DBConnection.conn.prepareStatement("SELECT department_id, department_name FROM departments ORDER BY department_id");
+            ResultSet rsDept = psDept.executeQuery();
+            while (rsDept.next()) {
+                System.out.println(rsDept.getInt("department_id") + ". " + rsDept.getString("department_name"));
+            }
+            rsDept.close();
+            psDept.close();
+
+            System.out.print("👉 Select Department ID (1-15): ");
             try {
                 deptId = Integer.parseInt(sc.nextLine().trim());
                 if (deptId > 0 && deptId <= 15) {
@@ -693,8 +705,27 @@ public class Admin extends User {
                     System.out.println("⚠️ Error: Invalid number format. Please enter an integer.");
                 }
             }
-            System.out.print("👉 Enter New Status (Booked/Completed/Cancelled): ");
-            String status = sc.nextLine();
+            String status = "";
+            while (true) {
+                System.out.println("\n🚦 --- Choose New Status ---");
+                System.out.println("1. Booked");
+                System.out.println("2. Completed");
+                System.out.println("3. Cancelled");
+                System.out.print("👉 Enter choice (1-3): ");
+                String statusOpt = sc.nextLine().trim();
+                if (statusOpt.equals("1")) {
+                    status = "Booked";
+                    break;
+                } else if (statusOpt.equals("2")) {
+                    status = "Completed";
+                    break;
+                } else if (statusOpt.equals("3")) {
+                    status = "Cancelled";
+                    break;
+                } else {
+                    System.out.println("⚠️ Error: Invalid choice. Please choose 1, 2, or 3.");
+                }
+            }
             CallableStatement cstmt = DBConnection.conn.prepareCall("{call UpdateAppointmentStatus(?, ?)}");
             cstmt.setInt(1, appId);
             cstmt.setString(2, status);

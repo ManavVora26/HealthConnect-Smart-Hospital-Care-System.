@@ -120,11 +120,11 @@ public class Dashboard {
             ps2.close();
 
             // Average Rating
-            PreparedStatement ps3 = DBConnection.conn.prepareStatement("SELECT average_rating FROM doctors WHERE doctor_id = ?");
+            PreparedStatement ps3 = DBConnection.conn.prepareStatement("SELECT AverageDoctorRating(?)");
             ps3.setInt(1, doctorId);
             ResultSet rs3 = ps3.executeQuery();
             if (rs3.next()) {
-                System.out.println("⭐ Average Feedback Rating     : " + rs3.getDouble("average_rating") + " / 5.0");
+                System.out.println("⭐ Average Feedback Rating     : " + rs3.getDouble(1) + " / 5.0");
             }
             rs3.close();
             ps3.close();
