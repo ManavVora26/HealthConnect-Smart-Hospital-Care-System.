@@ -25,9 +25,16 @@ CREATE PROCEDURE GetUserById(IN p_user_id INT)
 CREATE PROCEDURE RegisterPatient(IN p_first VARCHAR(50), IN p_last VARCHAR(50), IN p_phone VARCHAR(15))
     INSERT INTO patients (first_name, last_name, phone, registration_date) VALUES (p_first, p_last, p_phone, CURDATE());
 
-CREATE PROCEDURE BookAppointment(IN p_pid INT, IN p_did INT, IN p_date DATE, IN p_time TIME)
-    INSERT INTO appointments (patient_id, doctor_id, appointment_date, appointment_time, status) VALUES (p_pid, p_did, p_date, p_time, 'Booked');
+DROP PROCEDURE IF EXISTS BookAppointment;
 
+CREATE PROCEDURE BookAppointment(IN p_pid INT, IN p_did INT, IN p_date DATE, IN p_time TIME)
+INSERT INTO appointments (patient_id, doctor_id, appointment_date, appointment_time, status, token_number)
+VALUES (
+    p_pid, p_did, p_date, p_time, 'Booked',
+    (SELECT IFNULL(MAX(token_number), 0) + 1
+     FROM appointments
+     WHERE doctor_id = p_did AND appointment_date = p_date)
+);
 CREATE PROCEDURE ViewMedicalHistory(IN p_patient_id INT)
     SELECT * FROM medical_history WHERE patient_id = p_patient_id;
 
